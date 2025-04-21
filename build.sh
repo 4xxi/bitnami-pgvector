@@ -6,7 +6,7 @@ set -e
 # Check if PG_MAJOR_VERSION is set
 if [ -z "$PG_MAJOR_VERSION" ]; then
     echo "Error: PG_MAJOR_VERSION environment variable is not set"
-    echo "Usage: PG_MAJOR_VERSION=16 ./build.sh"
+    echo "Usage: PG_MAJOR_VERSION=17 ./build.sh"
     exit 1
 fi
 

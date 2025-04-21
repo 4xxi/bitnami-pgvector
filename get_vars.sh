@@ -3,7 +3,7 @@
 set -e
 
 # Get repo name from environment or use default
-REPO_NAME=${REPO_NAME:-"beshkenadze/bitnami-pgvector"}
+REPO_NAME=${REPO_NAME:-"4xxi/bitnami-pgvector"}
 
 # Get Deps only if jq doesn't exist
 if [ ! -f "./jq" ]; then
@@ -36,7 +36,7 @@ if [ -z "$BITNAMI_POSTGRES_REG_CONTENT" ]; then
     exit 1
 fi
 
-# Get latest Debian-based PostgreSQL 16 tag
+# Get latest Debian-based PostgreSQL 17 tag
 BITNAMI_NAME=$(echo -n "$BITNAMI_POSTGRES_REG_CONTENT" | ./jq -r --arg ver "$PG_MAJOR_VERSION" '.results[] | select(.name | contains($ver) and contains("debian")) | .name' | head -n 1)
 if [ -z "$BITNAMI_NAME" ]; then
     echo "Error: Could not find a matching Bitnami PostgreSQL tag"
@@ -53,7 +53,7 @@ if [ -z "$PGVECTOR_REG_CONTENT" ]; then
     exit 1
 fi
 
-PGVECTOR_NAME=$(echo -n "$PGVECTOR_REG_CONTENT" | ./jq -r '.results[] | select(.name | test(".*\\..*\\..*-pg16")) | .name' | head -n 1)
+PGVECTOR_NAME=$(echo -n "$PGVECTOR_REG_CONTENT" | ./jq -r '.results[] | select(.name | test(".*\\..*\\..*-pg17")) | .name' | head -n 1)
 if [ -z "$PGVECTOR_NAME" ]; then
     echo "Error: Could not find a matching PGVector tag"
     exit 1
